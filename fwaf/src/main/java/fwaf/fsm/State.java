@@ -1,4 +1,4 @@
-package fwaf;
+package fwaf.fsm;
 
 public class State {
 	private String uri;

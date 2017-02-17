@@ -10,6 +10,7 @@ import fi.iki.elonen.NanoHTTPD;
 import fi.iki.elonen.NanoHTTPD.Response.IStatus;
 import fi.iki.elonen.NanoHTTPD.Response.Status;
 import fi.iki.elonen.util.ServerRunner;
+import fwaf.fsm.State;
 import fwaf.handlers.DebugHandler;
 import fwaf.handlers.Error404NotFoundHandler;
 import fwaf.handlers.ErrorNotImplementedHandler;
