@@ -25,7 +25,7 @@ public class FWAF extends Router {
 		ServerRunner.run(FWAF.class);
 	}
 
-	private static HashMap<String, State> previousStates = new HashMap<String, State>();
+	private static HashMap<String, SessionState> previousStates = new HashMap<String, SessionState>();
 	
 	public FWAF() {
 		super(PORT);
@@ -103,10 +103,10 @@ public class FWAF extends Router {
 		@Override
 		public Response get(UriResource uriResource, Map<String, String> urlParams, IHTTPSession session) {
 			String sessionID = session.getCookies().read(FWAFID);
-			State previousState = previousStates.get(sessionID);
+			SessionState previousState = previousStates.get(sessionID);
 	    	if(previousState != null){
 	    		if((System.currentTimeMillis() - previousState.getTimestamp()) < INACTIVE){
-	    			State nextState = new State(session.getUri(), System.currentTimeMillis());
+	    			SessionState nextState = new SessionState(session.getUri(), System.currentTimeMillis());
 	    			if(isLegalStateTransition(previousState, nextState)){
 	    				// valid transition
 	    				// TODO: type check inputs
